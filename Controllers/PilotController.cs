@@ -1,7 +1,7 @@
-using NETVMS.Services;
+using OpenVMS.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace NETVMS.Controllers;
+namespace OpenVMS.Controllers;
 
 [ApiController]
 [Route("pilot")]

@@ -1,4 +1,4 @@
-namespace NETVMS.Models.Enums;
+namespace OpenVMS.Models.Enums;
 
 enum CabinCrewStatus
 {

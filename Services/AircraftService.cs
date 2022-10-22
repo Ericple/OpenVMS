@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace NETVMS.Services;
+namespace OpenVMS.Services;
 
 public class AircraftService : ServiceBase
 {
@@ -15,7 +15,7 @@ public class AircraftService : ServiceBase
     public AircraftService()
     {
         DataClient = new("mongodb://127.0.0.1:27017/");
-        Database = DataClient.GetDatabase("NETVMS");
+        Database = DataClient.GetDatabase("OpenVMS");
         Collection = Database.GetCollection<BsonDocument>("Aircraft");
     }
 

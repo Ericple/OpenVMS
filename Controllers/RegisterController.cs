@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace NETVMS.Controllers;
+namespace OpenVMS.Controllers;
 
 public class RegisterController : Controller
 {

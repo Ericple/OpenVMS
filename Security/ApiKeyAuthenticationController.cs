@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using NETVMS.Models.Enums;
-using NETVMS.Services;
+using OpenVMS.Models.Enums;
+using OpenVMS.Services;
 
-namespace NETVMS.Controllers;
+namespace OpenVMS.Controllers;
 //=====================================
 //
 //=====================================

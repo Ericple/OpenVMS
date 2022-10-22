@@ -1,8 +1,8 @@
-using NETVMS.Services;
+using OpenVMS.Services;
 using Microsoft.AspNetCore.Mvc;
-using NETVMS.Models.Enums;
+using OpenVMS.Models.Enums;
 
-namespace NETVMS.Controllers;
+namespace OpenVMS.Controllers;
 [ApiController]
 [Route("cabincrew")]
 //===================================

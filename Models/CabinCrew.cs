@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using Newtonsoft.Json;
 
-namespace NETVMS.Models;
+namespace OpenVMS.Models;
 //==================================================
 // This file defines Cabin Crew class
 //==================================================

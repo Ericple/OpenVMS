@@ -1,7 +1,7 @@
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace NETVMS.Services;
+namespace OpenVMS.Services;
 
 public class ServiceBase
 {

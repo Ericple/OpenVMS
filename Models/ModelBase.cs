@@ -1,6 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
-namespace NETVMS.Models;
+namespace OpenVMS.Models;
 
 public class ModelBase
 {

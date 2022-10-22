@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using NETVMS.Services;
+using OpenVMS.Services;
 
-namespace NETVMS.Controllers;
+namespace OpenVMS.Controllers;
 
 [ApiController]
 [Route("account")]

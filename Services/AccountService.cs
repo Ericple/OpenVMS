@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace NETVMS.Services;
+namespace OpenVMS.Services;
 
 public class AccountService : ServiceBase
 {
@@ -10,7 +10,7 @@ public class AccountService : ServiceBase
     public AccountService()
     {
         DataClient = new("mongodb://127.0.0.1:27017/");
-        Database = DataClient.GetDatabase("NETVMS");
+        Database = DataClient.GetDatabase("OpenVMS");
         Collection = Database.GetCollection<BsonDocument>("Account");
     }
     public bool Auth(string identifier, string pass)

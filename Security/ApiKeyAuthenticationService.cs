@@ -1,8 +1,8 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
-using NETVMS.Models.Enums;
+using OpenVMS.Models.Enums;
 
-namespace NETVMS.Services;
+namespace OpenVMS.Services;
 
 public class ApiKeyAuthenticationService
 {

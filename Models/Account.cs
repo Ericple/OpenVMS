@@ -1,4 +1,4 @@
-namespace NETVMS.Models;
+namespace OpenVMS.Models;
 
 public class Account : ModelBase
 {

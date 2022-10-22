@@ -1,9 +1,9 @@
-using NETVMS.Services;
+using OpenVMS.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using NETVMS.Models.Enums;
+using OpenVMS.Models.Enums;
 
-namespace NETVMS.Controllers;
+namespace OpenVMS.Controllers;
 
 [ApiController]
 [Route("aircraft")]

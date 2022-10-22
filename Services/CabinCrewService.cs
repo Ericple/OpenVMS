@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace NETVMS.Services;
+namespace OpenVMS.Services;
 
 public class CabinCrewService : ServiceBase
 {
@@ -14,7 +14,7 @@ public class CabinCrewService : ServiceBase
 
     public CabinCrewService()
     {
-        Database = DataClient.GetDatabase("NETVMS");
+        Database = DataClient.GetDatabase("OpenVMS");
         Collection = Database.GetCollection<BsonDocument>("CabinCrew");
     }
 
