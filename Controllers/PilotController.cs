@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace OpenVMS.Controllers;
 
 [ApiController]
-[Route("pilot")]
+[Route("/api/pilot")]
 public class PilotController : ControllerBase
 {
     private static readonly PilotService Service = new();

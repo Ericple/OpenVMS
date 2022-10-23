@@ -4,7 +4,7 @@ using OpenVMS.Models.Enums;
 
 namespace OpenVMS.Controllers;
 [ApiController]
-[Route("cabincrew")]
+[Route("/api/cabincrew")]
 //===================================
 //This file defines cabin crew apis
 //===================================

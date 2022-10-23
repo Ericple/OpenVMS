@@ -7,8 +7,6 @@ page once its beta release was out.
 
 # Installation Guide
 
-
-
 ## 1. From source code
 
 ## 2. From packed archive
@@ -24,6 +22,3 @@ A full distribution will be available in github pages with the initial release.
 
 # ApiChart
 
-| ApiName | ApiUri |
---------------------
-| Test | Test|
