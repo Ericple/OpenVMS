@@ -48,5 +48,9 @@ Api
     Auth provides software auth connection service.
 - Security
 
+## Client Authorization
+
+OpenVMS provides a 
+
 # ApiChart
 

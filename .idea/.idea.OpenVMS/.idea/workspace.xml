@@ -5,9 +5,9 @@
     <projectFile profileName="OpenVMS">OpenVMS.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Changed README.md">
+    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Bug fixed">
+      <change afterPath="$PROJECT_DIR$/README_zh_CN.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +27,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d85ab4989744b0aa31ae8a1a62a501b15200/81/d3cedb52/OAuthExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/peercat/Ericple/Code/OpenVMS/Models/Account.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/peercat/Ericple/Code/OpenVMS/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/peercat/Ericple/Code/OpenVMS/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -100,7 +101,7 @@
       <workItem from="1666433075432" duration="1349000" />
       <workItem from="1666444199689" duration="3953000" />
       <workItem from="1666520218718" duration="7188000" />
-      <workItem from="1666570131624" duration="8739000" />
+      <workItem from="1666570131624" duration="9391000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1666412407079</created>
@@ -158,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666579405935</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bug fixed">
+      <created>1666580298440</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666580298440</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +208,7 @@
     <MESSAGE value="changed label" />
     <MESSAGE value="Repo reorgnizing" />
     <MESSAGE value="Changed README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed README.md" />
+    <MESSAGE value="Bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixed" />
   </component>
 </project>
