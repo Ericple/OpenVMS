@@ -11,6 +11,8 @@ Virtual airline management system, written with .NET, based on the structure of 
 Work in progress. Documentations and installation instructions will be available on github
 page once its beta release was out.
 
+The original intention of OpenVMS is to provide an efficient backend system for every player who wants to create a virtual airline. OpenVMS provides all basic APIs and supports plug-in development. We recommend javascript for client-side development and electron for cross-platform support. Unlike NodeVMS, the scalability of OpenVMS is unparalleled, as long as you have .NET development experience, you can extend it arbitrarily.
+
 # Installation Guide
 
 ## 1. From source code

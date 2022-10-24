@@ -5,7 +5,11 @@
     <projectFile profileName="OpenVMS">OpenVMS.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Changed README.md" />
+    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Changed README.md">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +17,12 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d85ab4989744b0aa31ae8a1a62a501b15200/81/d3cedb52/OAuthExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -24,6 +34,7 @@
   </component>
   <component name="ProjectId" id="2GTQ3inkIYXyR5K0HP8Tp589RlX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -89,7 +100,7 @@
       <workItem from="1666433075432" duration="1349000" />
       <workItem from="1666444199689" duration="3953000" />
       <workItem from="1666520218718" duration="7188000" />
-      <workItem from="1666570131624" duration="7613000" />
+      <workItem from="1666570131624" duration="8739000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1666412407079</created>
@@ -140,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666578793284</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Changed README.md">
+      <created>1666579405935</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666579405935</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +198,7 @@
     <MESSAGE value="Added copyright declaration to each file of this project" />
     <MESSAGE value="Routine" />
     <MESSAGE value="changed label" />
+    <MESSAGE value="Repo reorgnizing" />
     <MESSAGE value="Changed README.md" />
     <option name="LAST_COMMIT_MESSAGE" value="Changed README.md" />
   </component>
