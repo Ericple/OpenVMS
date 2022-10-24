@@ -5,6 +5,7 @@
 ![Database](https://img.shields.io/badge/database-MongoDB-blue?style=flat-square&logo=mongodb) 
 ![author](https://img.shields.io/badge/OpenVMS-Ericple|Peercat-blue?style=flat-square)
 ![star](https://img.shields.io/github/stars/Ericple/OpenVMS?logo=github&style=flat-square)
+![Github Build](https://img.shields.io/github/workflow/status/Ericple/OpenVMS/.NET?style=flat-square)
 
 Virtual airline management system, written with .NET, based on the structure of NodeVMS.
 Work in progress. Documentations and installation instructions will be available on github
