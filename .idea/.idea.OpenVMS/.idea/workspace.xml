@@ -5,10 +5,8 @@
     <projectFile profileName="OpenVMS">OpenVMS.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Bug fixed">
-      <change afterPath="$PROJECT_DIR$/README_zh_CN.md" afterDir="false" />
+    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Added translated README_zh_CN.md">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,7 @@
       <workItem from="1666433075432" duration="1349000" />
       <workItem from="1666444199689" duration="3953000" />
       <workItem from="1666520218718" duration="7188000" />
-      <workItem from="1666570131624" duration="9391000" />
+      <workItem from="1666570131624" duration="10322000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1666412407079</created>
@@ -166,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666580298440</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added translated README_zh_CN.md">
+      <created>1666581454924</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1666581454924</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +214,7 @@
     <MESSAGE value="Repo reorgnizing" />
     <MESSAGE value="Changed README.md" />
     <MESSAGE value="Bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixed" />
+    <MESSAGE value="Added translated README_zh_CN.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added translated README_zh_CN.md" />
   </component>
 </project>

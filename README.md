@@ -7,27 +7,37 @@
 ![star](https://img.shields.io/github/stars/Ericple/OpenVMS?logo=github&style=flat-square)
 ![Github Build](https://img.shields.io/github/workflow/status/Ericple/OpenVMS/.NET?style=flat-square)
 
-Virtual airline management system, written with .NET, based on the structure of NodeVMS.
-Work in progress. Documentations and installation instructions will be available on github
-page once its beta release was out.
+OpenVMS is an open source virtual airline management backend that inherits the NODEVMS infrastructure and provides
+Completely refactored to use .NET. Currently still in development. Documentation will be published in beta-release
+Github Wiki and Gitee Wiki.
 
-The original intention of OpenVMS is to provide an efficient backend system for every player who wants to create a virtual airline. OpenVMS provides all basic APIs and supports plug-in development. We recommend javascript for client-side development and electron for cross-platform support. Unlike NodeVMS, the scalability of OpenVMS is unparalleled, as long as you have .NET development experience, you can extend it arbitrarily.
+The original intention of OpenVMS is to provide an efficient backend system for every player who wants to create a virtual airline.
+OpenVMS provides all basic APIs and supports plug-in development. We recommend using Nodejs for client side
+Develop and use electron for cross-platform support. Unlike NodeVMS, the scalability of OpenVMS is unmatched
+Amazingly, as long as you have experience with .NET development, you can extend it at will.
 
-# Installation Guide
+# Minimum requirements
 
-## 1. From source code
+- .NET 6.0 Core or higher
+- MongoDB Community Server 6.0.2 or later
 
-Download source code directly from this repo, and compile it
-using a .NET compiler
+# Install
 
-## 2. From packed archive
+## 1. Install from source
 
-A full distribution will be available in github pages with the initial release.
+Download the OPENVMS source code directory directly from any OPENVMS repository (Github/Gitee) and use the local .NET
+The compiler compiles. Before doing the following, make sure your local machine has a .NET 6.0 environment.
 
-# Requirements
+Open the local directory and run:
 
-- Nodejs 16.17.1 LTS or higher
-- MongoDB Community Server 6.0.2 or higher
+    dotnet run
+
+In development mode, a page will open to display the swagger debugging interface. At this point, the api will run on the local machine's
+Under the corresponding port and route.
+
+## 2. Install from Github Release
+
+Packages published in Github Release are compiled, and after downloading, unzip, click or double-click the executable file to run.
 
 # For Developer
 
