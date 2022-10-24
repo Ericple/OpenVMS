@@ -1,0 +1,49 @@
+version: '1.0'
+name: pipeline-20221024
+displayName: pipeline-20221024
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+        - ''
+stages:
+  - name: stage-92380ef9
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@dotnet
+        name: build_dotnet
+        displayName: .NET Core 构建
+        dotnetVersion: '6.0'
+        commands:
+          - '# input your command here'
+          - dotnet restore
+          - dotnet publish -c Release -o out
+        artifacts:
+          - name: BUILD_ARTIFACT
+            path:
+              - ./out
+        caches:
+          - ~/.nuget/packages
+        notify: []
+        strategy:
+          retry: '0'
+  - name: stage-1f8b4f12
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor:
+      - ericple
+    steps:
+      - step: publish@release_artifacts
+        name: publish_release_artifacts
+        displayName: 发布
+        dependArtifact: output
+        version: 1.0.0.0
+        autoIncrement: true
+        notify: []
+        strategy:
+          retry: '0'
