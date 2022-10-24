@@ -1,6 +1,6 @@
 # OpenVMS<sup>2</sup> - Community
 ![Licence](https://img.shields.io/github/license/Ericple/OpenVMS?style=flat-square) 
-![Release](https://img.shields.io/badge/release-null-blue?logo=gitee&style=flat-square) 
+![Release](https://img.shields.io/github/v/release/Ericple/OpenVMS?style=flat-square) 
 ![GitHub issues](https://img.shields.io/github/issues/Ericple/OpenVMS?logo=github&style=flat-square) 
 ![Database](https://img.shields.io/github/commit-activity/m/Ericple/OpenVMS?style=flat-square) 
 ![author](https://img.shields.io/badge/OpenVMS-Peercat-blue?style=flat-square)
