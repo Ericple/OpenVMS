@@ -1,5 +1,10 @@
 # OpenVMS<sup>2</sup> - Community
-![Licence](https://img.shields.io/github/license/Ericple/OpenVMS?style=flat-square&logo=github) ![Release](https://img.shields.io/github/v/release/Ericple/OpenVMS?style=flat-square&logo=github) ![GitHub issues](https://img.shields.io/github/issues/Ericple/OpenVMS?style=flat-square&logo=github) ![Database](https://img.shields.io/badge/database-MongoDB-blue?style=flat-square&logo=mongodb) ![author](https://img.shields.io/badge/OpenVMS-Ericple|Peercat-blue?style=flat-square)
+![Licence](https://img.shields.io/badge/license-GPL--3-green?logo=gitee&style=flat-square) 
+![Release](https://img.shields.io/badge/release-null-blue?logo=gitee&style=flat-square) 
+![GitHub issues](https://img.shields.io/github/issues/Ericple/OpenVMS?logo=github&style=flat-square) 
+![Database](https://img.shields.io/badge/database-MongoDB-blue?style=flat-square&logo=mongodb) 
+![author](https://img.shields.io/badge/OpenVMS-Ericple|Peercat-blue?style=flat-square)
+![star](https://img.shields.io/github/stars/Ericple/OpenVMS?logo=github&style=flat-square)
 
 Virtual airline management system, written with .NET, based on the structure of NodeVMS.
 Work in progress. Documentations and installation instructions will be available on github
