@@ -1,0 +1,545 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/README.md	(date 1666411018163)
+@@ -1,0 +1,29 @@
++# OpenVMS<sup>2</sup> - Community
++![Liscence](https://img.shields.io/github/license/Ericple/OpenVMS?style=flat-square&logo=github) ![Release](https://img.shields.io/github/v/release/Ericple/OpenVMS?style=flat-square&logo=github) ![GitHub issues](https://img.shields.io/github/issues/Ericple/OpenVMS?style=flat-square&logo=github) ![Database](https://img.shields.io/badge/database-MongoDB-blue?style=flat-square&logo=mongodb) ![author](https://img.shields.io/badge/OpenVMS-Ericple|Peercat-blue?style=flat-square)
++
++Virtual airline management system, written with .NET, based on the structure of NodeVMS.
++Work in progress. Documentations and installation instructions will be available on github
++page once its beta release was out.
++
++# Installation Guide
++
++
++
++## 1. From source code
++
++## 2. From packed archive
++
++A full distribution will be available in github pages with the initial release.
++
++# Requirements
++
++- Nodejs 16.17.1 LTS or higher
++- MongoDB Community Server 6.0.2 or higher
++
++# For Developer
++
++# ApiChart
++
++| ApiName | ApiUri |
++--------------------
++| Test | Test|
+\ No newline at end of file
+Index: Services/ServiceBase.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Driver;\nusing MongoDB.Bson;\n\nnamespace NETVMS.Services;\n\npublic class ServiceBase\n{\n    protected static MongoClient DataClient;\n    protected static IMongoDatabase? Database;\n    protected static IMongoCollection<BsonDocument> Collection;\n\n    /**\n     * Get All Objects\n     * Returns JSON string\n     */\n    public object Get()\n    {\n        return Collection.Find(new BsonDocument()).ToList().ToJson();\n    }\n\n    /**\n     * Get object with certain identifier\n     */\n    public object Get(string identifier)\n    {\n        return Collection.Find(Builders<BsonDocument>.Filter.Eq(\"Identifier\", identifier)).ToList().ToJson();\n    }\n    \n    /**\n     * Create an new instance\n     * void\n     */\n    public void Create(BsonDocument obj)\n    {\n        Collection.InsertOne(obj);\n    }\n\n    /**\n     * Delete instance with certain identifier\n     * long\n     */\n    public long Delete(string identifier)\n    {\n        return Collection.DeleteOne(Builders<BsonDocument>.Filter.Eq(\"Identifier\", identifier)).DeletedCount;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Services/ServiceBase.cs b/Services/ServiceBase.cs
+--- a/Services/ServiceBase.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Services/ServiceBase.cs	(date 1666410162518)
+@@ -1,7 +1,7 @@
+ using MongoDB.Driver;
+ using MongoDB.Bson;
+ 
+-namespace NETVMS.Services;
++namespace OpenVMS.Services;
+ 
+ public class ServiceBase
+ {
+Index: Security/ApiKey.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models;\n\npublic class ApiKey\n{\n    private string CreatedAt;\n    private string Value;\n    private int Permission;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Security/ApiKey.cs b/Security/ApiKey.cs
+--- a/Security/ApiKey.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Security/ApiKey.cs	(date 1666410262446)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models;
++namespace OpenVMS.Models;
+ 
+ public class ApiKey
+ {
+Index: Security/ApiKeyAuthenticationController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Microsoft.AspNetCore.Mvc;\nusing NETVMS.Models.Enums;\nusing NETVMS.Services;\n\nnamespace NETVMS.Controllers;\n//=====================================\n//\n//=====================================\n[ApiController]\n[Route(\"apikey\")]\npublic class ApiKeyAuthenticationController : ControllerBase\n{\n    private static readonly ApiKeyAuthenticationService Service = new();\n    [HttpPost(\"{value}/{permission}/{apikey}\")]\n    public ActionResult<bool> Create(string value, int permission, string apikey)\n    {\n        if (Service.Auth(apikey,ApiKeyPermission.Top))\n        {\n            Service.Create(value, permission);\n            return Ok();\n        }\n        else\n        {\n            return BadRequest();\n        }\n    }\n\n    [HttpDelete(\"{value}/{apikey}\")]\n    public ActionResult<long> Delete(string value, string apikey)\n    {\n        if (!Service.Auth(apikey,ApiKeyPermission.Top))\n        {\n            return BadRequest();\n        }\n        Service.Delete(value);\n        return Ok();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Security/ApiKeyAuthenticationController.cs b/Security/ApiKeyAuthenticationController.cs
+--- a/Security/ApiKeyAuthenticationController.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Security/ApiKeyAuthenticationController.cs	(date 1666410262377)
+@@ -1,8 +1,8 @@
+ using Microsoft.AspNetCore.Mvc;
+-using NETVMS.Models.Enums;
+-using NETVMS.Services;
++using OpenVMS.Models.Enums;
++using OpenVMS.Services;
+ 
+-namespace NETVMS.Controllers;
++namespace OpenVMS.Controllers;
+ //=====================================
+ //
+ //=====================================
+Index: Controllers/AccountController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Microsoft.AspNetCore.Mvc;\nusing NETVMS.Services;\n\nnamespace NETVMS.Controllers;\n\n[ApiController]\n[Route(\"account\")]\npublic class AccountController : ControllerBase\n{\n    private static readonly AccountService Service = new();\n    \n    [HttpGet(\"{identifier},{pass}\")]\n    public ActionResult<bool> Auth(string identifier, string pass)\n    {\n        if (Service.Auth(identifier,pass))\n        {\n            return Ok();\n        }\n\n        return BadRequest();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Controllers/AccountController.cs b/Controllers/AccountController.cs
+--- a/Controllers/AccountController.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Controllers/AccountController.cs	(date 1666410307886)
+@@ -1,7 +1,7 @@
+ using Microsoft.AspNetCore.Mvc;
+-using NETVMS.Services;
++using OpenVMS.Services;
+ 
+-namespace NETVMS.Controllers;
++namespace OpenVMS.Controllers;
+ 
+ [ApiController]
+ [Route("account")]
+Index: OpenVMS.csproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><Project Sdk=\"Microsoft.NET.Sdk.Web\">\n\n    <PropertyGroup>\n        <TargetFramework>net6.0</TargetFramework>\n        <Nullable>enable</Nullable>\n        <ImplicitUsings>enable</ImplicitUsings>\n    </PropertyGroup>\n\n    <ItemGroup>\n        <PackageReference Include=\"Swashbuckle.AspNetCore\" Version=\"6.2.3\"/>\n    </ItemGroup>\n\n</Project>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/OpenVMS.csproj b/OpenVMS.csproj
+--- a/OpenVMS.csproj	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/OpenVMS.csproj	(date 1666410245091)
+@@ -7,7 +7,16 @@
+     </PropertyGroup>
+ 
+     <ItemGroup>
+-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
++        <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
++        <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
++        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+     </ItemGroup>
++
++    <ItemGroup>
++      <Folder Include="Controllers" />
++      <Folder Include="Models" />
++      <Folder Include="Security" />
++      <Folder Include="Services" />
++    </ItemGroup>
+ 
+ </Project>
+Index: Program.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>var builder = WebApplication.CreateBuilder(args);\n\n// Add services to the container.\n\nbuilder.Services.AddControllers();\n// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle\nbuilder.Services.AddEndpointsApiExplorer();\nbuilder.Services.AddSwaggerGen();\n\nvar app = builder.Build();\n\n// Configure the HTTP request pipeline.\nif (app.Environment.IsDevelopment())\n{\n    app.UseSwagger();\n    app.UseSwaggerUI();\n}\n\napp.UseHttpsRedirection();\n\napp.UseAuthorization();\n\napp.MapControllers();\n\napp.Run();\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Program.cs b/Program.cs
+--- a/Program.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Program.cs	(date 1666409907191)
+@@ -22,4 +22,4 @@
+ 
+ app.MapControllers();
+ 
+-app.Run();
++app.Run();
+\ No newline at end of file
+Index: Models/CabinCrew.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing Newtonsoft.Json;\n\nnamespace NETVMS.Models;\n//==================================================\n// This file defines Cabin Crew class\n//==================================================\n\npublic class CabinCrew : ModelBase\n{\n    private string AirportICAO;//Indicate where this cabin crew located\n    private int Skill;//Indicate skill level of this cabin crew\n\n    public CabinCrew(object cabinCrew)\n    {\n        Table = \"cabinCrew\";\n        Obj = cabinCrew;\n    }\n    \n    /**\n     * Get Database Identifier of this cabin crew\n     */\n    public BsonObjectId GetDataIdAttribute()\n    {\n        return JsonConvert.DeserializeObject<CabinCrew>(Obj.ToString()).DataBaseID;\n    }\n\n    /**\n     * Get Identity of this cabin crew\n     */\n    public string GetIdentAttribute()\n    {\n        return JsonConvert.DeserializeObject<CabinCrew>(Obj.ToString()).Identifier;\n    }\n\n    /**\n     * Get if this cabin crew is activated\n     */\n    public int GetStatusAttribute()\n    {\n        return JsonConvert.DeserializeObject<CabinCrew>(Obj.ToString()).Status;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/CabinCrew.cs b/Models/CabinCrew.cs
+--- a/Models/CabinCrew.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/CabinCrew.cs	(date 1666410023825)
+@@ -1,7 +1,7 @@
+ using MongoDB.Bson;
+ using Newtonsoft.Json;
+ 
+-namespace NETVMS.Models;
++namespace OpenVMS.Models;
+ //==================================================
+ // This file defines Cabin Crew class
+ //==================================================
+Index: Models/Aircraft.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing Newtonsoft.Json;\n\nnamespace NETVMS.Models;\n//==================================================\n/**\n * This file defines Aircraft class\n */\n//==================================================\npublic class Aircraft : ModelBase\n{\n    private string AirportICAO;//Indicate where this aircraft located\n    private string HubICAO;//Indicate where the aircraft can be maintained at the lowest price\n    private string Icao;//Kind of this aircraft\n    private string Name;//Name of this aircraft\n    private float FlightTime;//Total flight time of this aircraft\n    private float MTOW;//Maximum take off weight\n    private float ZFW;//Zero fuel weight\n    \n    public Aircraft(object aircraft)\n    {\n        Table = \"aircraft\";\n        Obj = aircraft;\n    }\n\n    /**\n     * Get Database Identifier of this aircraft\n     */\n    public BsonObjectId GetDataIdAttribute()\n    {\n        return JsonConvert.DeserializeObject<Aircraft>(Obj.ToString()).DataBaseID;\n    }\n    \n    /**\n     * Get registration number of this aircraft\n     */\n    public string GetIdentAttribute()\n    {\n        return JsonConvert.DeserializeObject<Aircraft>(Obj.ToString()).Identifier;\n    }\n    \n    /**\n     * Get if this aircraft is activated\n     * Return Y - Activated / N - Not Activated\n     */\n    public int GetStatusAttribute()\n    {\n        return JsonConvert.DeserializeObject<Aircraft>(Obj.ToString()).Status;//Aircraft Active Attribute should be Y/N\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Aircraft.cs b/Models/Aircraft.cs
+--- a/Models/Aircraft.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Aircraft.cs	(date 1666410023915)
+@@ -1,7 +1,7 @@
+ using MongoDB.Bson;
+ using Newtonsoft.Json;
+ 
+-namespace NETVMS.Models;
++namespace OpenVMS.Models;
+ //==================================================
+ /**
+  * This file defines Aircraft class
+Index: Models/Account.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models;\n\npublic class Account : ModelBase\n{\n    private string Identifier;\n    private string Password;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Account.cs b/Models/Account.cs
+--- a/Models/Account.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Account.cs	(date 1666410023794)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models;
++namespace OpenVMS.Models;
+ 
+ public class Account : ModelBase
+ {
+Index: Services/PilotService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing MongoDB.Driver;\n\nnamespace NETVMS.Services;\n\npublic class PilotService : ServiceBase\n{\n    public PilotService(\n        string connectionString,\n        string databaseName,\n        string collectionName)\n    {\n        DataClient = new(connectionString);\n        Database = DataClient.GetDatabase(databaseName);\n        Collection = Database.GetCollection<BsonDocument>(collectionName);\n    }\n\n    public PilotService()\n    {\n        DataClient = new(\"mongodb://127.0.0.1:27017/\");\n        Database = DataClient.GetDatabase(\"NETVMS\");\n        Collection = Database.GetCollection<BsonDocument>(\"Pilot\");\n    }\n\n    public long Transfer(string identifier, string target)\n    {\n        var filter = Builders<BsonDocument>.Filter.Eq(\"Identifier\", identifier);\n        var updater = Builders<BsonDocument>.Update.Set(\"Company\", target);\n        return Collection.UpdateOne(filter, updater).ModifiedCount;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Services/PilotService.cs b/Services/PilotService.cs
+--- a/Services/PilotService.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Services/PilotService.cs	(date 1666410217247)
+@@ -1,7 +1,7 @@
+ using MongoDB.Bson;
+ using MongoDB.Driver;
+ 
+-namespace NETVMS.Services;
++namespace OpenVMS.Services;
+ 
+ public class PilotService : ServiceBase
+ {
+@@ -18,7 +18,7 @@
+     public PilotService()
+     {
+         DataClient = new("mongodb://127.0.0.1:27017/");
+-        Database = DataClient.GetDatabase("NETVMS");
++        Database = DataClient.GetDatabase("OpenVMS");
+         Collection = Database.GetCollection<BsonDocument>("Pilot");
+     }
+ 
+Index: Models/ModelBase.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing MongoDB.Driver;\nnamespace NETVMS.Models;\n\npublic class ModelBase\n{\n    protected string? Table;//Collection Name that contains the model\n    protected object? Obj;//The model\n    protected BsonObjectId DataBaseID;//Unique identifier in database\n    protected readonly MongoClient DataClient = new(\"mongodb://127.0.0.1:27017/\");\n    protected string Identifier;//Unique identifier for each instance\n    protected string Company;//Indicates who this instance belongs to\n    protected int Status;//Indicates the status of this instance - See Enum - [instance type]\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/ModelBase.cs b/Models/ModelBase.cs
+--- a/Models/ModelBase.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/ModelBase.cs	(date 1666410023800)
+@@ -1,6 +1,6 @@
+ using MongoDB.Bson;
+ using MongoDB.Driver;
+-namespace NETVMS.Models;
++namespace OpenVMS.Models;
+ 
+ public class ModelBase
+ {
+Index: Services/AccountService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing MongoDB.Driver;\n\nnamespace NETVMS.Services;\n\npublic class AccountService : ServiceBase\n{\n    private static readonly PilotService PilotService = new();\n\n    public AccountService()\n    {\n        DataClient = new(\"mongodb://127.0.0.1:27017/\");\n        Database = DataClient.GetDatabase(\"NETVMS\");\n        Collection = Database.GetCollection<BsonDocument>(\"Account\");\n    }\n    public bool Auth(string identifier, string pass)\n    {\n        if (Collection.Find(Builders<BsonDocument>.Filter.Eq(\"Identifier\", identifier) &\n                            Builders<BsonDocument>.Filter.Eq(\"Password\", pass)).CountDocuments() == 1)\n        {\n            return true;\n        }\n\n        return false;\n    }\n\n    public bool Create(string identifier, string email, string nickname, string pass, string hub)\n    {\n        var account = new BsonDocument\n        {\n            { \"Identifier\", identifier },\n            { \"Password\", pass }\n        };\n        var pilot = new BsonDocument\n        {\n            {\"Identifier\", identifier },\n            { \"Status\", 0 },\n            { \"Company\", \"GOV\" },\n            { \"AirportICAO\", hub },\n            { \"Level\", 1 }\n        };\n        Collection.InsertOne(account);\n        PilotService.Create(pilot);\n        return true;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Services/AccountService.cs b/Services/AccountService.cs
+--- a/Services/AccountService.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Services/AccountService.cs	(date 1666410204154)
+@@ -1,7 +1,7 @@
+ using MongoDB.Bson;
+ using MongoDB.Driver;
+ 
+-namespace NETVMS.Services;
++namespace OpenVMS.Services;
+ 
+ public class AccountService : ServiceBase
+ {
+@@ -10,7 +10,7 @@
+     public AccountService()
+     {
+         DataClient = new("mongodb://127.0.0.1:27017/");
+-        Database = DataClient.GetDatabase("NETVMS");
++        Database = DataClient.GetDatabase("OpenVMS");
+         Collection = Database.GetCollection<BsonDocument>("Account");
+     }
+     public bool Auth(string identifier, string pass)
+Index: Models/Pilot.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models;\n\npublic class Pilot : ModelBase\n{\n    private string AirportICAO;\n    private int Level;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Pilot.cs b/Models/Pilot.cs
+--- a/Models/Pilot.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Pilot.cs	(date 1666410023805)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models;
++namespace OpenVMS.Models;
+ 
+ public class Pilot : ModelBase
+ {
+Index: Models/Enums/AccountStatus.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models.Enums;\n\npublic enum AccountStatus\n{\n    Inactive=0,\n    Active\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Enums/AccountStatus.cs b/Models/Enums/AccountStatus.cs
+--- a/Models/Enums/AccountStatus.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Enums/AccountStatus.cs	(date 1666410023831)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models.Enums;
++namespace OpenVMS.Models.Enums;
+ 
+ public enum AccountStatus
+ {
+Index: Services/AircraftService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing MongoDB.Driver;\n\nnamespace NETVMS.Services;\n\npublic class AircraftService : ServiceBase\n{\n    public AircraftService(string connectionString,string databaseName,string collectionName)\n    {\n        DataClient = new(connectionString);\n        Database = DataClient.GetDatabase(databaseName);\n        Collection = Database.GetCollection<BsonDocument>(collectionName);\n    }\n\n    public AircraftService()\n    {\n        DataClient = new(\"mongodb://127.0.0.1:27017/\");\n        Database = DataClient.GetDatabase(\"NETVMS\");\n        Collection = Database.GetCollection<BsonDocument>(\"Aircraft\");\n    }\n\n    /**\n     * Transfer aircraft from one company to another\n     * void\n     */\n    public long Transfer(string identifier, string target)\n    {\n        var filter = Builders<BsonDocument>.Filter.Eq(\"Identifier\", identifier);\n        var updater = Builders<BsonDocument>.Update.Set(\"Company\", target);\n        return Collection.UpdateOne(filter, updater).ModifiedCount;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Services/AircraftService.cs b/Services/AircraftService.cs
+--- a/Services/AircraftService.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Services/AircraftService.cs	(date 1666410192434)
+@@ -1,7 +1,7 @@
+ using MongoDB.Bson;
+ using MongoDB.Driver;
+ 
+-namespace NETVMS.Services;
++namespace OpenVMS.Services;
+ 
+ public class AircraftService : ServiceBase
+ {
+@@ -15,7 +15,7 @@
+     public AircraftService()
+     {
+         DataClient = new("mongodb://127.0.0.1:27017/");
+-        Database = DataClient.GetDatabase("NETVMS");
++        Database = DataClient.GetDatabase("OpenVMS");
+         Collection = Database.GetCollection<BsonDocument>("Aircraft");
+     }
+ 
+Index: Models/Enums/AircraftStatus.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models.Enums;\n\nenum AircraftStatus\n{\n    Normal = 1,\n    Maintaining,\n    Stored,\n    Retired,\n    Crashed\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Enums/AircraftStatus.cs b/Models/Enums/AircraftStatus.cs
+--- a/Models/Enums/AircraftStatus.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Enums/AircraftStatus.cs	(date 1666410023861)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models.Enums;
++namespace OpenVMS.Models.Enums;
+ 
+ enum AircraftStatus
+ {
+Index: Services/CabinCrewService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing MongoDB.Driver;\n\nnamespace NETVMS.Services;\n\npublic class CabinCrewService : ServiceBase\n{\n    public CabinCrewService(string connectionString, string databaseName, string collectionName)\n    {\n        DataClient = new(connectionString);\n        Database = DataClient.GetDatabase(databaseName);\n        Collection = Database.GetCollection<BsonDocument>(collectionName);\n    }\n\n    public CabinCrewService()\n    {\n        Database = DataClient.GetDatabase(\"NETVMS\");\n        Collection = Database.GetCollection<BsonDocument>(\"CabinCrew\");\n    }\n\n    /**\n     * Dismiss or hire the instance\n     */\n    public long Transfer(string identifier, string target)\n    {\n        var filter = Builders<BsonDocument>.Filter.Eq(\"Identifier\", identifier);\n        var updater = Builders<BsonDocument>.Update.Set(\"Company\", target);\n        return Collection.UpdateOne(filter, updater).ModifiedCount;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Services/CabinCrewService.cs b/Services/CabinCrewService.cs
+--- a/Services/CabinCrewService.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Services/CabinCrewService.cs	(date 1666410209840)
+@@ -1,7 +1,7 @@
+ using MongoDB.Bson;
+ using MongoDB.Driver;
+ 
+-namespace NETVMS.Services;
++namespace OpenVMS.Services;
+ 
+ public class CabinCrewService : ServiceBase
+ {
+@@ -14,7 +14,7 @@
+ 
+     public CabinCrewService()
+     {
+-        Database = DataClient.GetDatabase("NETVMS");
++        Database = DataClient.GetDatabase("OpenVMS");
+         Collection = Database.GetCollection<BsonDocument>("CabinCrew");
+     }
+ 
+Index: Models/Enums/ApiKeyPermission.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models.Enums;\n\npublic enum ApiKeyPermission\n{\n    Lowest=1,\n    Mid=10,\n    High=100,\n    Top=777\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Enums/ApiKeyPermission.cs b/Models/Enums/ApiKeyPermission.cs
+--- a/Models/Enums/ApiKeyPermission.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Enums/ApiKeyPermission.cs	(date 1666410023849)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models.Enums;
++namespace OpenVMS.Models.Enums;
+ 
+ public enum ApiKeyPermission
+ {
+Index: Models/Enums/CabinCrewStatus.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models.Enums;\n\nenum CabinCrewStatus\n{\n    Available = 1,\n    Busy,\n    Resigned\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Enums/CabinCrewStatus.cs b/Models/Enums/CabinCrewStatus.cs
+--- a/Models/Enums/CabinCrewStatus.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Enums/CabinCrewStatus.cs	(date 1666410023838)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models.Enums;
++namespace OpenVMS.Models.Enums;
+ 
+ enum CabinCrewStatus
+ {
+Index: Models/Enums/PilotLevel.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace NETVMS.Models.Enums;\n\npublic enum PilotLevel\n{\n    F1=1,\n    F2,\n    F3,\n    F4,\n    F5,\n    F6,\n    F7\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Models/Enums/PilotLevel.cs b/Models/Enums/PilotLevel.cs
+--- a/Models/Enums/PilotLevel.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Models/Enums/PilotLevel.cs	(date 1666410023872)
+@@ -1,4 +1,4 @@
+-namespace NETVMS.Models.Enums;
++namespace OpenVMS.Models.Enums;
+ 
+ public enum PilotLevel
+ {
+Index: Security/ApiKeyAuthenticationService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using MongoDB.Bson;\nusing MongoDB.Driver;\nusing NETVMS.Models.Enums;\n\nnamespace NETVMS.Services;\n\npublic class ApiKeyAuthenticationService\n{\n    private MongoClient ApiKeyClient = new();\n    private IMongoDatabase ApiKeyBase;\n    private IMongoCollection<BsonDocument> ApiKeyCollection;\n\n    public ApiKeyAuthenticationService(string database, string collectionName)\n    {\n        ApiKeyBase = ApiKeyClient.GetDatabase(database);\n        ApiKeyCollection = ApiKeyBase.GetCollection<BsonDocument>(collectionName);\n    }\n    \n    public ApiKeyAuthenticationService()\n    {\n        ApiKeyBase = ApiKeyClient.GetDatabase(\"NETVMS\");\n        ApiKeyCollection = ApiKeyBase.GetCollection<BsonDocument>(\"ApiKey\");\n    }\n\n    public bool Auth(string apikey,ApiKeyPermission permission)\n    {\n        if (ApiKeyCollection.Find(Builders<BsonDocument>.Filter.Eq(\"Value\", apikey) & Builders<BsonDocument>.Filter.Gte(\"Permission\",permission)).CountDocuments() == 1)\n        {\n            return true;\n        }\n        else\n        {\n            return false;\n        }\n    }\n\n    public bool Create(string value, int permission)\n    {\n        var apiKey = new BsonDocument\n        {\n            { \"Value\", value },\n            { \"Permission\", permission },\n            { \"CreatedAt\", DateTime.Now }\n        };\n        ApiKeyCollection.InsertOne(apiKey);\n        return true;\n    }\n\n    public long Delete(string value)\n    {\n        return ApiKeyCollection.DeleteOne(Builders<BsonDocument>.Filter.Eq(\"Value\", value)).DeletedCount;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Security/ApiKeyAuthenticationService.cs b/Security/ApiKeyAuthenticationService.cs
+--- a/Security/ApiKeyAuthenticationService.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Security/ApiKeyAuthenticationService.cs	(date 1666410262400)
+@@ -1,8 +1,8 @@
+ using MongoDB.Bson;
+ using MongoDB.Driver;
+-using NETVMS.Models.Enums;
++using OpenVMS.Models.Enums;
+ 
+-namespace NETVMS.Services;
++namespace OpenVMS.Services;
+ 
+ public class ApiKeyAuthenticationService
+ {
+Index: Controllers/PilotController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using NETVMS.Services;\nusing Microsoft.AspNetCore.Mvc;\n\nnamespace NETVMS.Controllers;\n\n[ApiController]\n[Route(\"pilot\")]\npublic class PilotController : ControllerBase\n{\n    private static readonly PilotService Service = new();\n\n    /**\n     * Get all pilots in database\n     */\n    [HttpGet]\n    public ActionResult<object> Get() => Service.Get();\n\n    /**\n     * Get pilot with specific identifier\n     */\n    [HttpGet(\"{identifier}\")]\n    public ActionResult<object> Get(string identifier) => Service.Get(identifier);\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Controllers/PilotController.cs b/Controllers/PilotController.cs
+--- a/Controllers/PilotController.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Controllers/PilotController.cs	(date 1666410307820)
+@@ -1,7 +1,7 @@
+-using NETVMS.Services;
++using OpenVMS.Services;
+ using Microsoft.AspNetCore.Mvc;
+ 
+-namespace NETVMS.Controllers;
++namespace OpenVMS.Controllers;
+ 
+ [ApiController]
+ [Route("pilot")]
+Index: Controllers/AircraftController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using NETVMS.Services;\nusing Microsoft.AspNetCore.Mvc;\nusing MongoDB.Bson;\nusing NETVMS.Models.Enums;\n\nnamespace NETVMS.Controllers;\n\n[ApiController]\n[Route(\"aircraft\")]\n//==================================\n// This file defines aircraft apis\n//==================================\npublic class AircraftController : ControllerBase\n{\n    private static readonly AircraftService Service = new();\n    private static readonly ApiKeyAuthenticationService AuthenticationService = new();\n    /**\n     * Get all aircraft in database\n     */\n    [HttpGet]\n    public ActionResult<object> Get() => Service.Get();\n    \n    /**\n     * Get aircraft with certain registration\n     */\n    [HttpGet(\"{identifier}\")]\n    public ActionResult<object> Get(string identifier) => Service.Get(identifier);\n    \n    /**\n     * Create an new aircraft into database\n     */\n    [HttpPost(\"{identifier}/{location}/{company}/{icao}/{name}/{apikey}\")]\n    public ActionResult<string> Create(string identifier, string location, string company, string icao, string name, string apikey)\n    {\n     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.Mid))\n     {\n      return BadRequest();\n     }\n     var aircraft = new BsonDocument\n        {\n            { \"Identifier\", identifier},\n            {\"Active\",false},\n            {\"Status\",1},\n            {\"Company\",company},\n            {\"AirportICAO\",location},\n            {\"HubICAO\",location},\n            {\"Icao\",icao},\n            {\"Name\",name},\n            {\"FlightTime\",0},\n            {\"MTOW\",0},\n            {\"ZFW\",0}\n        };\n        Service.Create(aircraft);\n        return Ok();\n    }\n\n    /**\n     * Transfer an aircraft to another\n     */\n    [HttpPatch(\"{identifier}/{target}/{apikey}\")]\n    public ActionResult<long> Transfer(string identifier, string target, string apikey)\n    {\n     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.Mid))\n     {\n      return BadRequest();\n     }\n     Service.Transfer(identifier, target);\n     return Ok();\n    }\n\n    /**\n     * Delete an aircraft\n     */\n    [HttpDelete(\"{identifier}/{apikey}\")]\n    public ActionResult<long> Delete(string identifier, string apikey)\n    {\n     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.High))\n     {\n      return BadRequest();\n     }\n     Service.Delete(identifier);\n     return Ok();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Controllers/AircraftController.cs b/Controllers/AircraftController.cs
+--- a/Controllers/AircraftController.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Controllers/AircraftController.cs	(date 1666410307851)
+@@ -1,9 +1,9 @@
+-using NETVMS.Services;
++using OpenVMS.Services;
+ using Microsoft.AspNetCore.Mvc;
+ using MongoDB.Bson;
+-using NETVMS.Models.Enums;
++using OpenVMS.Models.Enums;
+ 
+-namespace NETVMS.Controllers;
++namespace OpenVMS.Controllers;
+ 
+ [ApiController]
+ [Route("aircraft")]
+Index: Controllers/CabinCrewController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using NETVMS.Services;\nusing Microsoft.AspNetCore.Mvc;\nusing NETVMS.Models.Enums;\n\nnamespace NETVMS.Controllers;\n[ApiController]\n[Route(\"cabincrew\")]\n//===================================\n//This file defines cabin crew apis\n//===================================\npublic class CabinCrewController : ControllerBase\n{\n    private static readonly CabinCrewService Service = new();\n    private static readonly ApiKeyAuthenticationService AuthenticationService = new();\n\n    /**\n     * Get all cabin crew in database\n     */\n    [HttpGet]\n    public ActionResult<object> Get() => Service.Get();\n\n    /**\n     * Get cabin crew with certain name\n     */\n    [HttpGet(\"{identifier}\")]\n    public ActionResult<object> Get(string identifier) => Service.Get(identifier);\n\n    /**\n     * Dismiss or hire a instance\n     */\n    [HttpPatch(\"{identifier}/{target}/{apikey}\")]\n    public ActionResult<long> Transfer(string identifier, string target, string apikey)\n    {\n     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.Mid))\n     {\n      return BadRequest();\n     }\n     Service.Transfer(identifier, target);\n     return Ok();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Controllers/CabinCrewController.cs b/Controllers/CabinCrewController.cs
+--- a/Controllers/CabinCrewController.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Controllers/CabinCrewController.cs	(date 1666410307825)
+@@ -1,8 +1,8 @@
+-using NETVMS.Services;
++using OpenVMS.Services;
+ using Microsoft.AspNetCore.Mvc;
+-using NETVMS.Models.Enums;
++using OpenVMS.Models.Enums;
+ 
+-namespace NETVMS.Controllers;
++namespace OpenVMS.Controllers;
+ [ApiController]
+ [Route("cabincrew")]
+ //===================================
+Index: Controllers/RegisterController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Microsoft.AspNetCore.Mvc;\n\nnamespace NETVMS.Controllers;\n\npublic class RegisterController : Controller\n{\n    // GET\n    // public IActionResult Reg()\n    // {\n    //     return View();\n    // }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Controllers/RegisterController.cs b/Controllers/RegisterController.cs
+--- a/Controllers/RegisterController.cs	(revision 9cb515b2fc9b59ca90142a48e32bb9358b71e70f)
++++ b/Controllers/RegisterController.cs	(date 1666410307845)
+@@ -1,6 +1,6 @@
+ using Microsoft.AspNetCore.Mvc;
+ 
+-namespace NETVMS.Controllers;
++namespace OpenVMS.Controllers;
+ 
+ public class RegisterController : Controller
+ {
