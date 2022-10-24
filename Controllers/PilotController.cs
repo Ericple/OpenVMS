@@ -20,4 +20,10 @@ public class PilotController : ControllerBase
      */
     [HttpGet("{identifier}")]
     public ActionResult<object> Get(string identifier) => Service.Get(identifier);
+
+    /**
+     * Resign or transfer a pilot
+     */
+    [HttpPatch("{identifier}/{target}")]
+    public ActionResult<long> Transfer(string identifier, string target) => Service.Transfer(identifier,target);
 }

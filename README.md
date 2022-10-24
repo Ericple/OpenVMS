@@ -9,6 +9,9 @@ page once its beta release was out.
 
 ## 1. From source code
 
+Download source code directly from this repo, and compile it
+using a .NET compiler
+
 ## 2. From packed archive
 
 A full distribution will be available in github pages with the initial release.
@@ -19,6 +22,23 @@ A full distribution will be available in github pages with the initial release.
 - MongoDB Community Server 6.0.2 or higher
 
 # For Developer
+
+## Basic concepts
+
+- Controller
+
+    Controller provides the accessibility for
+Api
+- Service
+
+    Provides basic service of each instance model
+- Model
+
+    Defines different kinds of instance model
+- Auth
+
+    Auth provides software auth connection service.
+- Security
 
 # ApiChart
 
