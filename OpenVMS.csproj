@@ -16,7 +16,6 @@
       <Folder Include="Controllers" />
       <Folder Include="Models" />
       <Folder Include="Security" />
-      <Folder Include="Services" />
     </ItemGroup>
 
 </Project>

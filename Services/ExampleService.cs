@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 /*
  * 本文件是 OpenVMS 的一部分。
 
@@ -8,13 +8,17 @@ using Microsoft.AspNetCore.Mvc;
 
  * 你应该随程序获得一份 GNU 通用公共许可证的复本。如果没有，请看 <https://www.gnu.org/licenses/>。
  */
-namespace OpenVMS.Controllers;
+namespace OpenVMS.Services;
 
-public class RegisterController : Controller
+public class ExampleService : ServiceBase
 {
-    // GET
-    // public IActionResult Reg()
-    // {
-    //     return View();
-    // }
+    public ExampleService()
+    {
+        DataClient = new("mongodb://127.0.0.1:27017/");
+        Database = DataClient.GetDatabase("OpenVMS");
+        Collection = Database.GetCollection<BsonDocument>("Account");
+    }
+    //Add your service code here,
+    //ServiceBase class provides CRD function
+    //Get(); Create(); Delete();
 }
