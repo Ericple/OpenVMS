@@ -28,18 +28,28 @@ OpenVMS提供所有的基础API，并支持插件开发。我们推荐使用Node
 从OPENVMS任意仓库（[Github](https://github.com/Ericple/OpenVMS)/[Gitee](https://gitee.com/ericple/open-vms))直接下载OPENVMS源代码目录，并使用本地.NET
 编译器进行编译。在执行以下操作前，确保你的本地机器具备了.NET 6.0环境。
 
-``git clone https://github.com/Ericple/OpenVMS.git``
+```
+git clone https://github.com/Ericple/OpenVMS.git
+```
 
-``cd OpenVMS``
+```
+cd OpenVMS
+```
 
-``dotnet build --configuration Release``
+```
+dotnet build --configuration Release
+```
 
 默认情况下，生成文件将会位于./bin下的目录中。找到OpenVMS对应可执行文件运行即可
 进入OpenVMS CLI。
 
-``cd ./bin/Release/net6.0``
+```
+cd ./bin/Release/net6.0
+```
 
-``./OpenVMS``
+```
+./OpenVMS
+```
 
 ## 2.从Github Release安装
 
