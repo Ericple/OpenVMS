@@ -1,9 +1,9 @@
+using System.Text;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using OpenVMS.Auth;
 using OpenVMS.Models.Enums;
 using OpenVMS.Services;
-using ZstdSharp.Unsafe;
 
 /*
  * 本文件是 OpenVMS 的一部分。
@@ -26,15 +26,28 @@ public class ApiKeyAuthenticationService
 
     public void Get()
     {
-        System.Console.WriteLine("{0} ApiKey found",KeyCollection.Count);
+        var getStream = new FileStream(GetType().Assembly.Location[new Range(0,GetType().Assembly.Location.Length-7)]+"key",FileMode.Open);
+        var getReader = new StreamReader(getStream,Encoding.UTF8);
+        var rawData= getReader.ReadToEnd();
+        var keys = rawData.Split("\n");
+        KeyCollection.Clear();
+        foreach (var key in keys)
+        {
+            var obj = key.Split("\t");
+            if (obj.Length>1)
+            {
+                KeyCollection.Add(new ApiKey(key.Split("\t")[0],int.Parse(key.Split("\t")[1])));
+            }
+        }
+        System.Console.WriteLine("{0} ApiKey(s) found",KeyCollection.Count);
         foreach (var apiKey in KeyCollection)
         {
             System.Console.WriteLine("{0}\t{1}",apiKey.Value,apiKey.Permission);
         }
     }
-    public static bool Auth(string apikey,int permission)
+    public bool Auth(string apikey,int permission)
     {
-        
+        Get();
         foreach (var key in KeyCollection)
         {
             if (apikey == key.Value && permission >= key.Permission)
@@ -51,6 +64,12 @@ public class ApiKeyAuthenticationService
     {
         KeyCollection.Insert(KeyCollection.Count,new ApiKey(value,permission));
         System.Console.WriteLine("Key Count: {0}",KeyCollection.Count);
+        var keyStream = new FileStream(GetType().Assembly.Location[new Range(0,GetType().Assembly.Location.Length-7)]+"key",FileMode.Append);
+        var keyWriter = new StreamWriter(keyStream);
+        keyWriter.WriteLine("\n"+value+"\t"+permission);
+        keyWriter.Flush();
+        keyWriter.Close();
+        keyStream.Close();
         return true;
     }
 

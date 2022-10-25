@@ -14,7 +14,7 @@ using OpenVMS.Console;
 var interpreter = new Interpreter();
 
 
-interpreter.Welcome("v1.0.0");
+interpreter.Welcome("v1.1.0");
 while (true)
 {
     interpreter.Get(args);

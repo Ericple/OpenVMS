@@ -6,19 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Console/HelpList.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Console/Interpreter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OpenVMS.sln.DotSettings" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OpenVMS.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/AircraftController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AircraftController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/CabinCrewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CabinCrewController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Enums/ApiKeyPermission.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Enums/ApiKeyPermission.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README_zh_CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_zh_CN.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Security/ApiKey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/ApiKey.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Security/ApiKeyAuthenticationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/ApiKeyAuthenticationController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Security/ApiKeyAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/ApiKeyAuthenticationService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +106,9 @@
       <workItem from="1666520218718" duration="7188000" />
       <workItem from="1666570131624" duration="23369000" />
       <workItem from="1666607485989" duration="13153000" />
+      <workItem from="1666657948809" duration="885000" />
+      <workItem from="1666660847171" duration="1728000" />
+      <workItem from="1666663696479" duration="3881000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1666412407079</created>
@@ -191,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666581919767</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added OpenVMS Terminal for backend operation">
+      <created>1666658076195</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1666658076195</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +239,7 @@
     <MESSAGE value="Bug fixed" />
     <MESSAGE value="Added translated README_zh_CN.md" />
     <MESSAGE value="Updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
+    <MESSAGE value="Added OpenVMS Terminal for backend operation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added OpenVMS Terminal for backend operation" />
   </component>
 </project>
