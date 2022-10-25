@@ -5,8 +5,21 @@
     <projectFile profileName="OpenVMS">OpenVMS.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="Added translated README_zh_CN.md">
+    <list default="true" id="94eb779d-258b-4e7b-9aca-a8fad6ac6fa7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Console/HelpList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Console/Interpreter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OpenVMS.sln.DotSettings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OpenVMS.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OpenVMS/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AircraftController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AircraftController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CabinCrewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CabinCrewController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Enums/ApiKeyPermission.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Enums/ApiKeyPermission.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README_zh_CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_zh_CN.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Security/ApiKey.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/ApiKey.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Security/ApiKeyAuthenticationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/ApiKeyAuthenticationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Security/ApiKeyAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Security/ApiKeyAuthenticationService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +37,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d85ab4989744b0aa31ae8a1a62a501b15200/81/d3cedb52/OAuthExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/peercat/Ericple/Code/OpenVMS/Models/Account.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/peercat/Ericple/Code/OpenVMS/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/peercat/Ericple/Code/OpenVMS/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/32c9d56724ed4e65a66e7263b738935416e00/cf/ff2bb87a/WebApplication.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file:///run/media/peercat/Ericple/Code/OpenVMS/Controllers/CabinCrewController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,21 +52,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.OpenVMS">
     <configuration name="OpenVMS" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/OpenVMS.csproj" />
@@ -99,7 +111,8 @@
       <workItem from="1666433075432" duration="1349000" />
       <workItem from="1666444199689" duration="3953000" />
       <workItem from="1666520218718" duration="7188000" />
-      <workItem from="1666570131624" duration="10322000" />
+      <workItem from="1666570131624" duration="23369000" />
+      <workItem from="1666607485989" duration="13153000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1666412407079</created>
@@ -171,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666581454924</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updated README.md">
+      <created>1666581919767</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1666581919767</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +235,7 @@
     <MESSAGE value="Changed README.md" />
     <MESSAGE value="Bug fixed" />
     <MESSAGE value="Added translated README_zh_CN.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added translated README_zh_CN.md" />
+    <MESSAGE value="Updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
   </component>
 </project>

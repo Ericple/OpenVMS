@@ -18,23 +18,33 @@ OpenVMS提供所有的基础API，并支持插件开发。我们推荐使用Node
 
 # 最低要求
 
-- .NET 6.0 Core 或更高
-- MongoDB Community Server 6.0.2 或更高版本
+- [ASP.NET 6.0 Core](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 或更高
+- [MongoDB Community Server 6.0.2](https://www.mongodb.com/try/download/community) 或更高版本
 
 # 安装
 
 ## 1.从源代码安装
 
-从OPENVMS任意仓库（Github/Gitee)直接下载OPENVMS源代码目录，并使用本地.NET
+从OPENVMS任意仓库（[Github](https://github.com/Ericple/OpenVMS)/[Gitee](https://gitee.com/ericple/open-vms))直接下载OPENVMS源代码目录，并使用本地.NET
 编译器进行编译。在执行以下操作前，确保你的本地机器具备了.NET 6.0环境。
 
 打开本地目录，运行：
 
-    dotnet run
+`dotnet build`
 
-在开发模式下，将会打开一个页面以显示swagger调试界面。此时，api将运行于本地机器的
-对应端口及路由下。
+默认情况下，生成文件将会位于./bin下的目录中。找到OpenVMS对应可执行文件运行即可
+进入OpenVMS CLI。
 
 ## 2.从Github Release安装
 
-发布于Github Release中的包是已编译的，下载后解压，单击或双击可执行文件即可运行。
+发布于Github Release中的包是已编译的，下载后解压，单击或双击可执行文件即可运行
+OpenVMS CLI。
+
+# 开发
+
+## 基本概念
+
+- ### 服务端
+
+服务端提供操作数据库需要使用的Api，在OpenVMS自带Api中，为了避免意外请求，对每一
+个非GET请求都添加了ApiKey访问验证。维护者可以在后端自行添加ApiKey

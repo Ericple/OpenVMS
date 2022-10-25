@@ -21,7 +21,6 @@ namespace OpenVMS.Controllers;
 public class CabinCrewController : ControllerBase
 {
     private static readonly CabinCrewService Service = new();
-    private static readonly ApiKeyAuthenticationService AuthenticationService = new();
 
     /**
      * Get all cabin crew in database
@@ -41,7 +40,7 @@ public class CabinCrewController : ControllerBase
     [HttpPatch("{identifier}/{target}/{apikey}")]
     public ActionResult<long> Transfer(string identifier, string target, string apikey)
     {
-     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.Mid))
+     if (!ApiKeyAuthenticationService.Auth(apikey,ApiKeyPermission.Mid))
      {
       return BadRequest();
      }

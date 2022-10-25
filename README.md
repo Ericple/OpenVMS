@@ -18,8 +18,8 @@ Amazingly, as long as you have experience with .NET development, you can extend 
 
 # Minimum requirements
 
-- .NET 6.0 Core or higher
-- MongoDB Community Server 6.0.2 or later
+- [ASP.NET 6.0 Core](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
+- [MongoDB Community Server 6.0.2](https://www.mongodb.com/try/download/community) or later
 
 # Install
 
@@ -30,7 +30,7 @@ The compiler compiles. Before doing the following, make sure your local machine 
 
 Open the local directory and run:
 
-    dotnet run
+`dotnet build`
 
 In development mode, a page will open to display the swagger debugging interface. At this point, the api will run on the local machine's
 Under the corresponding port and route.
@@ -38,29 +38,3 @@ Under the corresponding port and route.
 ## 2. Install from Github Release
 
 Packages published in Github Release are compiled, and after downloading, unzip, click or double-click the executable file to run.
-
-# For Developer
-
-## Basic concepts
-
-- Controller
-
-    Controller provides the accessibility for
-Api
-- Service
-
-    Provides basic service of each instance model
-- Model
-
-    Defines different kinds of instance model
-- Auth
-
-    Auth provides software auth connection service.
-- Security
-
-## Client Authorization
-
-OpenVMS provides a 
-
-# ApiChart
-

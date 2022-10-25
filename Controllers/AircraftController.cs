@@ -23,7 +23,7 @@ namespace OpenVMS.Controllers;
 public class AircraftController : ControllerBase
 {
     private static readonly AircraftService Service = new();
-    private static readonly ApiKeyAuthenticationService AuthenticationService = new();
+    // private static readonly ApiKeyAuthenticationService AuthenticationService = new();
     /**
      * Get all aircraft in database
      */
@@ -42,7 +42,7 @@ public class AircraftController : ControllerBase
     [HttpPost("{identifier}/{location}/{company}/{icao}/{name}/{apikey}")]
     public ActionResult<string> Create(string identifier, string location, string company, string icao, string name, string apikey)
     {
-     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.Mid))
+     if (!ApiKeyAuthenticationService.Auth(apikey,ApiKeyPermission.Mid))
      {
       return BadRequest();
      }
@@ -70,7 +70,7 @@ public class AircraftController : ControllerBase
     [HttpPatch("{identifier}/{target}/{apikey}")]
     public ActionResult<long> Transfer(string identifier, string target, string apikey)
     {
-     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.Mid))
+     if (!ApiKeyAuthenticationService.Auth(apikey,ApiKeyPermission.Mid))
      {
       return BadRequest();
      }
@@ -84,7 +84,7 @@ public class AircraftController : ControllerBase
     [HttpDelete("{identifier}/{apikey}")]
     public ActionResult<long> Delete(string identifier, string apikey)
     {
-     if (!AuthenticationService.Auth(apikey,ApiKeyPermission.High))
+     if (!ApiKeyAuthenticationService.Auth(apikey,ApiKeyPermission.High))
      {
       return BadRequest();
      }

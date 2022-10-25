@@ -8,28 +8,17 @@
  * 你应该随程序获得一份 GNU 通用公共许可证的复本。如果没有，请看 <https://www.gnu.org/licenses/>。
  */
 
-var builder = WebApplication.CreateBuilder(args);
+using OpenVMS.Console;
 
-// Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var interpreter = new Interpreter();
 
-var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+interpreter.Welcome("v1.0.0");
+while (true)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    interpreter.Get(args);
 }
 
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
-app.MapControllers();
-
-app.Run();
