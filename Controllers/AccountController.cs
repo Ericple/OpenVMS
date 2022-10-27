@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenVMS.Services;
+using OpenVMS.Plugins.Example;
 /*
  * 本文件是 OpenVMS 的一部分。
 

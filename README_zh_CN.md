@@ -29,26 +29,26 @@ OpenVMS提供所有的基础API，并支持插件开发。我们推荐使用Node
 编译器进行编译。在执行以下操作前，确保你的本地机器具备了.NET 6.0环境。
 
 ```
-git clone https://github.com/Ericple/OpenVMS.git
+#~ git clone https://github.com/Ericple/OpenVMS.git
 ```
 
 ```
-cd OpenVMS
+#~ cd OpenVMS
 ```
 
 ```
-dotnet build --configuration Release
+#~ dotnet build --configuration Release
 ```
 
 默认情况下，生成文件将会位于./bin下的目录中。找到OpenVMS对应可执行文件运行即可
 进入OpenVMS CLI。
 
 ```
-cd ./bin/Release/net6.0
+#~ cd ./bin/Release/net6.0
 ```
 
 ```
-./OpenVMS
+#~ ./OpenVMS
 ```
 
 ## 2.从Github Release安装
@@ -94,3 +94,26 @@ OpenVMS使用apikey进行操作验证，apikey会以明文保存在本地，请�
 
     6. 客户端必须以用户体验为第一要务
 
+- ### 系统API
+
+| API路由         | 用途    | 路径                                     |
+|---------------|-------|----------------------------------------|
+| api/account   | 账号管理  | http(s)://localhost:5001/api/account   |
+| api/aircraft  | 飞机管理  | http(s)://localhost:5001/api/aircraft  |
+| api/cabincrew | 空乘管理  | http(s)://localhost:5001/api/cabincrew |
+| api/pilot     | 飞行员管理 | http(s)://localhost:5001/api/pilot     |
+
+API用法请运行以下命令查看：
+```
+#~ dotnet build --configuration Debug
+
+#~ cd ./bin/Debug/net6.0
+
+#~ ./OpenVMS
+```
+
+```
+OpenVMS ~> service start
+```
+
+进入Swagger面板查看API参数

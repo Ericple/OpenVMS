@@ -2,6 +2,7 @@
  * Created at 2022/10/24 by Guo Ting jin
  */
 
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenVMS.Models.Enums;
@@ -76,19 +77,17 @@ public class Interpreter
                         PrintError("\nBroken argument(s), add -help to get help list.",HelpList.ApiKeyAdd());
                     }
                 }
-                // else if (args.Contains("del") && args.Length > 1)
-                // {
-                //     try
-                //     {
-                //         var service = new ApiKeyAuthenticationService();
-                //         var num = service.Delete(args[1]);
-                //         PrintResult(num + " key(s) deleted");
-                //     }
-                //     catch (Exception e)
-                //     {
-                //         PrintError("\nBroken argument(s), add -help to get help list.", HelpList.ApiKeyDel());
-                //     }
-                // }
+                else if (args.Contains("del") && args.Length > 1)
+                {
+                    try
+                    {
+                        Service.Delete(args[0]);
+                    }
+                    catch (Exception e)
+                    {
+                        PrintError("\nBroken argument(s), add -help to get help list.", HelpList.ApiKeyDel());
+                    }
+                }
                 else if (args.Contains("gen") && args.Length > 1)
                 {
                     try
@@ -111,6 +110,14 @@ public class Interpreter
                 }
                 break;
             }
+            case "api":
+            {
+                if (args.Contains("l")) 
+                {
+                    
+                }
+                break;
+            }
         }
     }
 
@@ -119,6 +126,7 @@ public class Interpreter
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();
+        builder.Services.AddControllersWithViews();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -132,10 +140,12 @@ public class Interpreter
 
         app.UseHttpsRedirection();
 
+        app.UseStaticFiles();
+        app.UseRouting();
+
         app.UseAuthorization();
 
         app.MapControllers();
-        
         app.Run();
     }
     private static void Help(string funcName)

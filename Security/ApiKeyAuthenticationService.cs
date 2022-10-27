@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using OpenVMS.Auth;
 using OpenVMS.Models.Enums;
-using OpenVMS.Services;
+using OpenVMS.Plugins.Example;
 
 /*
  * 本文件是 OpenVMS 的一部分。
@@ -73,11 +73,21 @@ public class ApiKeyAuthenticationService
         return true;
     }
 
-    // public long Delete(string value)
-    // {
-    //     
-    //     return _apiKeyCollection.DeleteOne(Builders<BsonDocument>.Filter.Eq("Value", value)).DeletedCount;
-    // }
+    public void Delete(string value)
+    {
+        Get();
+        KeyCollection.Find(delegate(ApiKey key) { return key.Value.Equals(value); });
+        System.Console.WriteLine("Key Count: {0}",KeyCollection.Count);
+        var keyStream = new FileStream(GetType().Assembly.Location[new Range(0,GetType().Assembly.Location.Length-7)]+"key",FileMode.CreateNew);
+        var keyWriter = new StreamWriter(keyStream);
+        foreach (var apiKey in KeyCollection)
+        {
+            keyWriter.WriteLine("\n"+apiKey.Value+"\t"+apiKey.Permission);
+        }
+        keyWriter.Flush();
+        keyWriter.Close();
+        keyStream.Close();
+    }
     public string Random()
     {
         string str = string.Empty;

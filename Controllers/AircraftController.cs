@@ -1,4 +1,4 @@
-using OpenVMS.Services;
+using OpenVMS.Plugins.Example;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using OpenVMS.Models.Enums;

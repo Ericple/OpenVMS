@@ -17,12 +17,12 @@ public class AuthController : ControllerBase
 {
     private static readonly AuthService Service = new ();
 
-    [HttpPatch("{token}/{clientIdentifier}")]
-    public ActionResult<bool> Validate(string token, string clientIdentifier)
+    [HttpGet("{token}/{clientIdentifier}")]
+    public ActionResult<string> Validate(string token, string clientIdentifier)
     {
         if (Service.Validate(token,clientIdentifier))
         {
-            return Ok();
+            return "验证成功，现在可以关闭该页面并返回客户端";
         }
 
         return BadRequest();
