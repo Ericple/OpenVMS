@@ -1,4 +1,4 @@
-using OpenVMS.Plugins.Example;
+using OpenVMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using OpenVMS.Models.Enums;
 using OpenVMS.Security;

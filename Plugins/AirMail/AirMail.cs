@@ -1,4 +1,4 @@
-namespace OpenVMS.Plugins.AirMail;
+namespace OpenVMS.Service.AirMail;
 
 public class AirMail
 {

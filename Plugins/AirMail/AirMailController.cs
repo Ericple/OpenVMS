@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace OpenVMS.Plugins.AirMail;
+namespace OpenVMS.Service.AirMail;
 
 [ApiController]
 [Route("airmail")]

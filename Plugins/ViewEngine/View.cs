@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Linq;
 
-namespace OpenVMS.Plugins.ViewEngine;
+namespace OpenVMS.Service.ViewEngine;
 
 public class View
 {

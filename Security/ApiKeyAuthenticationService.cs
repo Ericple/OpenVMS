@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using OpenVMS.Auth;
 using OpenVMS.Models.Enums;
-using OpenVMS.Plugins.Example;
+using OpenVMS.Service;
 
 /*
  * 本文件是 OpenVMS 的一部分。

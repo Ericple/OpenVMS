@@ -1,4 +1,4 @@
-namespace OpenVMS.Plugins;
+namespace OpenVMS.Service;
 
 public class Path
 {

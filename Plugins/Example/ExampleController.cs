@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 // using OpenVMS.Plugins.ViewEngine;
 
-namespace OpenVMS.Plugins.Example;
+namespace OpenVMS.Service;
 
 [ApiController]
 [Route("example")]

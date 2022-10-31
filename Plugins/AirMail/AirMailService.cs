@@ -1,8 +1,8 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
-using OpenVMS.Plugins.Example;
+using OpenVMS.Service;
 
-namespace OpenVMS.Plugins.AirMail;
+namespace OpenVMS.Service.AirMail;
 
 public class AirMailService : ServiceBase
 {
